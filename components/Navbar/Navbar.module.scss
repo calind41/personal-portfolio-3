@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  .containerWrapper {
+    width: 77vw;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 10px;
+    font-weight: 700;
+    cursor: pointer;
+
+    .portfolio {
+      height: inherit;
+      display: flex;
+      align-items: center;
+      color: #0540f2;
+      font-weight: 700;
+      font-size: 23px;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: inherit;
+      width: 240px;
+      & > div {
+        position: relative;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+        span {
+          border-bottom: 2px solid #000;
+          width: 100%;
+          display: inline-block;
+          position: absolute;
+          bottom: 2px;
+          left: 0;
+        }
+        &:hover {
+          opacity: 0.6;
+          color: #002aff;
+          span {
+            border-bottom: none;
+          }
+        }
+      }
+    }
+  }
+}
