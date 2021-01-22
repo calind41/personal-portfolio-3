@@ -1,13 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Navbar.module.scss";
-
-const dom = (selector) => document.querySelector(selector);
+import ReactGa from "react-ga";
 
 export default function Navbar() {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
+  if (process.browser) {
+    useEffect(() => {
+      ReactGa.initialize("G-6ZVHLF4C5D");
 
+      ReactGa.timing({
+        category: "Load Performace",
+        variable: "Some metric",
+        value: "Value of Metric",
+      });
+
+      // to report pageview
+      ReactGa.pageview(window.location.pathname + window.location.search);
+    }, [window.location.pathname + window.location.search]);
+  }
   return (
     <div className={styles.container}>
       <div className={styles.containerWrapper}>
