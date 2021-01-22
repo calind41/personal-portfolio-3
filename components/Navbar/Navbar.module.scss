@@ -19,12 +19,16 @@
     cursor: pointer;
 
     .portfolio {
-      height: inherit;
       display: flex;
       align-items: center;
-      color: #0540f2;
-      font-weight: 700;
-      font-size: 23px;
+      height: inherit;
+
+      a {
+        text-decoration: none;
+        color: #0540f2;
+        font-weight: 700;
+        font-size: 23px;
+      }
     }
 
     .wrapper {
@@ -33,10 +37,17 @@
       align-items: center;
       height: inherit;
       width: 240px;
+      color: #000;
       & > div {
         position: relative;
         opacity: 1;
         transition: opacity 0.3s ease;
+        a {
+          color: #000;
+          text-decoration: none;
+          outline: none;
+        }
+
         span {
           border-bottom: 2px solid #000;
           width: 100%;
@@ -47,11 +58,48 @@
         }
         &:hover {
           opacity: 0.6;
-          color: #002aff;
+          a {
+            color: #002aff;
+          }
+
           span {
             border-bottom: none;
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .container {
+    .containerWrapper {
+      width: 77vw;
+
+      .portfolio {
+        font-size: 21px;
+      }
+
+      .wrapper {
+        width: 160px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .container {
+    .containerWrapper {
+      width: 86vw;
+
+      .portfolio {
+        font-size: 21px;
+      }
+
+      .wrapper {
+        width: 150px;
+        font-size: 14px;
       }
     }
   }

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Projects.module.scss";
+import { github, linkIcon } from "./icons";
+import ModalVideo from "react-modal-video";
+// import techshop from "./techshop.mp4";
 
 export default function Projects() {
   return (
-    <div className={styles.container}>
+    <div id='works' className={styles.container}>
       <h1>.projects()</h1>
       <div className={styles.projectsWrapper}>
         <Project
@@ -47,7 +50,22 @@ export default function Projects() {
           }}
           links={{
             github: "https://github.com/calind41/techshop-ecommerce-app",
-            live: "none",
+            live: "techshop",
+          }}
+        />
+        <Project
+          img={{ src: "/p8.png", alt: "Air Travel Website" }}
+          description={{
+            h3: "Air Travel Website",
+            p: [
+              "Responsive Design",
+              "Authentication & Multiple language support",
+              "Implemented with Next.js",
+            ],
+          }}
+          links={{
+            github: "https://github.com/calind41/airtravel-website",
+            live: "airtravel",
           }}
         />
         <Project
@@ -97,6 +115,7 @@ export default function Projects() {
             live: "https://pair-match-memory-game.netlify.app/",
           }}
         />
+
         {/* <Project />
         <Project /> */}
       </div>
@@ -105,6 +124,9 @@ export default function Projects() {
 }
 
 function Project({ img, description, links }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenAirTravel, setIsOpenAirTravel] = useState(false);
+
   return (
     <div className={styles.project}>
       <img src={img.src} alt={img.alt} />
@@ -118,12 +140,45 @@ function Project({ img, description, links }) {
 
         <p className={styles.links}>
           <a href={links.github} target='_blank'>
-            <i class='fab fa-github'></i>
+            {github}
           </a>
-          <a href={links.live} target='_blank'>
-            <i class='fas fa-link'></i>
+          <a
+            onClick={
+              links.live === "techshop"
+                ? () => setIsOpen(true)
+                : links.live === "airtravel"
+                ? () => setIsOpenAirTravel(true)
+                : null
+            }
+            href={
+              links.live === "techshop" || links.live === "airtravel"
+                ? null
+                : links.live
+            }
+            target='_blank'
+          >
+            {/* <i class='fas fa-link'></i> */}
+            {linkIcon}
           </a>
         </p>
+      </div>
+      <div style={{ position: "absolute" }}>
+        <ModalVideo
+          channel='custom'
+          isOpen={isOpen}
+          channel='youtube'
+          videoId='qiXOcYcNi9k'
+          onClose={() => setIsOpen(false)}
+        />
+      </div>
+      <div style={{ position: "absolute" }}>
+        <ModalVideo
+          channel='custom'
+          isOpen={isOpenAirTravel}
+          channel='youtube'
+          videoId='doiokHnj7J4'
+          onClose={() => setIsOpenAirTravel(false)}
+        />
       </div>
     </div>
   );

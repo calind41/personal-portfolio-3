@@ -13,10 +13,11 @@
   .projectsWrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     .project {
       position: relative;
       top: 0;
-      width: 370px;
+      width: 31.5%;
       border: 1px solid red;
       height: 370px;
       border: 1px solid gray;
@@ -59,21 +60,124 @@
           height: 55px;
         }
         .links {
-          width: 70px;
+          width: 77px;
           display: flex;
           font-size: 19px;
           justify-content: space-evenly;
-          margin-top: 23px;
+          margin-top: 28px;
 
-          i {
-            color: #000;
+          svg {
+            fill: #000;
+            width: 23px;
+            height: 23px;
 
             &:hover {
-              color: #40e0d0;
+              fill: #40e0d0;
             }
           }
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 1428px) {
+  .container {
+    .projectsWrapper {
+      .project {
+        width: 370px;
+        flex-wrap: nowrap;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1031px) {
+  .container {
+    .projectsWrapper {
+      width: 785px;
+      .project {
+        width: 370px;
+        flex-wrap: nowrap;
+      }
+    }
+  }
+}
+@media screen and (max-width: 932px) {
+  .container {
+    margin-top: -50px;
+    width: 370px;
+    h1 {
+      font-size: 27px;
+    }
+    .projectsWrapper {
+      width: 370px;
+      margin: 0 auto;
+      .project {
+        width: 370px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .container {
+    margin-top: -70px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .container {
+    margin-top: -120px;
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .container {
+    width: 340px;
+    .projectsWrapper {
+      width: 340px;
+      .project {
+        width: 340px;
+        height: 340px;
+
+        img {
+          height: 160px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 430px) {
+  .container {
+    margin-top: -200px;
+    h1 {
+      margin-bottom: 23px;
+      font-size: 22px;
+    }
+  }
+}
+@media screen and (max-width: 370px) {
+  .container {
+    width: 340px;
+    width: 90vw;
+    .projectsWrapper {
+      width: 340px;
+      width: 90vw;
+
+      .project {
+        width: 340px;
+        width: 90vw;
+
+        height: 340px;
+
+        img {
+          height: 160px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .container {
+    margin-top: -240px;
   }
 }
