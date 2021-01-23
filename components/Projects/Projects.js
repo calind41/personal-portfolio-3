@@ -1,14 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Projects.module.scss";
 import { github, linkIcon } from "./icons";
 import ModalVideo from "react-modal-video";
-// import techshop from "./techshop.mp4";
+import axios from "axios";
 
 export default function Projects() {
+  useEffect(() => {
+    const requestHandler = async () => {
+      const res = await axios.get(
+        "https://mysportsbooking.com/api/v1/sportLocations"
+      );
+    };
+    requestHandler();
+    console.log("new visitor");
+  }, []);
   return (
     <div id='works' className={styles.container}>
       <h1>.projects()</h1>
       <div className={styles.projectsWrapper}>
+        <Project
+          img={{ src: "/p8.png", alt: "Air Travel Website" }}
+          description={{
+            h3: "Air Travel Website",
+            p: [
+              "Responsive Design",
+              "Authentication & Multiple language support",
+              "Implemented with Next.js",
+            ],
+          }}
+          links={{
+            github: "https://github.com/calind41/airtravel-website",
+            live: "airtravel",
+          }}
+        />
         <Project
           img={{ src: "/p1.png", alt: "Sports Booking App" }}
           description={{
@@ -53,21 +77,7 @@ export default function Projects() {
             live: "techshop",
           }}
         />
-        <Project
-          img={{ src: "/p8.png", alt: "Air Travel Website" }}
-          description={{
-            h3: "Air Travel Website",
-            p: [
-              "Responsive Design",
-              "Authentication & Multiple language support",
-              "Implemented with Next.js",
-            ],
-          }}
-          links={{
-            github: "https://github.com/calind41/airtravel-website",
-            live: "airtravel",
-          }}
-        />
+
         <Project
           img={{ src: "/p4.png", alt: "Insurance App UI C." }}
           description={{
@@ -127,6 +137,19 @@ function Project({ img, description, links }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAirTravel, setIsOpenAirTravel] = useState(false);
 
+  const handleClickLive = (links) => {
+    if (links.live === "techshop") {
+      setIsOpen(true);
+    } else if (links.live === "airtravel") {
+      setIsOpenAirTravel();
+    } else {
+      console.log("clicked on actual links ");
+    }
+  };
+  const handleClickGithub = (description) => {
+    console.log("clicked a github link ", description);
+  };
+
   return (
     <div className={styles.project}>
       <img src={img.src} alt={img.alt} />
@@ -139,17 +162,15 @@ function Project({ img, description, links }) {
         </div>
 
         <p className={styles.links}>
-          <a href={links.github} target='_blank'>
+          <a
+            onClick={() => handleClickGithub(description.h3)}
+            href={links.github}
+            target='_blank'
+          >
             {github}
           </a>
           <a
-            onClick={
-              links.live === "techshop"
-                ? () => setIsOpen(true)
-                : links.live === "airtravel"
-                ? () => setIsOpenAirTravel(true)
-                : null
-            }
+            onClick={() => handleClickLive(links)}
             href={
               links.live === "techshop" || links.live === "airtravel"
                 ? null
